@@ -63,9 +63,7 @@ void showEveryOtherColor(int red1, int green1, int blue1, int red2, int green2, 
 }
 
 void loop() {
-  if(Serial.available()){
-    val = Serial.read() - '0';
-  }
+  val = 1;
   if(val != 0){
     showSolidColor(0,0,0,3);
     //2 seconds
@@ -74,8 +72,9 @@ void loop() {
     showSolidColor(255, 100, 0, 6);
     //14 seconds
     for(int i = 0; i < 4; i++){
-      showEveryOtherColor(255, 100, 0, 255, 0, 0, 2);
-      showEveryOtherColor(255, 0, 0, 255, 100, 0, 2);
+      showEveryOtherColor(111, 0, 132, 200, 50, 0, 2);
+      showEveryOtherColor(200, 50, 0, 111, 0, 132
+      , 2);
     }
     //30 seconds
     showSolidColor(255, 100, 0, 10);
