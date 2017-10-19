@@ -1,4 +1,4 @@
-#include "FastLED.h"
+ #include "FastLED.h"
 
 // How many leds in your strip?
 #define NUM_LEDS 150
@@ -84,7 +84,7 @@ void loop() {
     //46 seconds
     showEveryNthColor(255, 0, 0, 3, 4);
     //50 secondss
-    showSolidColor(255, 0, 0, 5);
+    showSolidColor(0, 0, 0, 2);
     val = 0;
   }
 }
