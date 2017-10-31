@@ -1,10 +1,10 @@
 import pygame
 import pygame.mixer
 import datetime
-import serial
 import time
+import serial
 
-arduinoSerialData = serial.Serial('/dev/ttyUSB0', 9600)
+arduinoSerialData = serial.Serial('/COM1', 9600)
 
 
 pygame.init()
@@ -22,18 +22,22 @@ print(current_time.isoformat())
 
 while not done:
 	pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_e]:
+	if pressed[pygame.K_e]:
 		print("Good Bye")
 		done= True
 	if pressed[pygame.K_SPACE] and not soundChannelA.get_busy():
-                soundChannelA.play(sndB)
-		arduinoSerialData.write('5')
-                current_time = datetime.datetime.now().time()
-                print(current_time.isoformat())
+		soundChannelA.play(sndB)
+		arduinoSerialData.write("5".encode())
+		current_time = datetime.datetime.now().time()
+		print(current_time.isoformat())
 		print("Sound")
 	for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                        print("Good Bye")
-                        done = True
+		if event.type == pygame.QUIT:
+			print("Good Bye")
+			done = True
 	pygame.display.flip()
 	pygame.event.pump()
+	
+arduinoSerialData.close()
+
+
