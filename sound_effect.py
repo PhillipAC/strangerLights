@@ -1,12 +1,17 @@
 import pygame
 import pygame.mixer
+import RPi.GPIO as GPIO
 import datetime
 import serial
 import time
 import os
 
+# Setup the serial for sending information to arduino
 arduinoSerialData = serial.Serial('/dev/ttyUSB0', 9600)
 
+# Setup GPIO for wired button detection
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 pygame.init()
 BLACK = (0,0,0)
@@ -36,19 +41,20 @@ for file in os.listdir("Music"):
 print 'All music loaded'
 
 while not done:
+	# Get the state of the button
+	input_state = GPIO.input(18)
 	pressed = pygame.key.get_pressed()
         if pressed[pygame.K_e]:
 		print("Good Bye")
 		done= True
-	if pressed[pygame.K_SPACE] and not lightShow:
+	if (pressed[pygame.K_SPACE] or not input_state ) and not lightShow:
+		print("Starting Light Show")
 		lightShow = True
                 musicChannel.load('stranger.wav')
 		musicChannel.play()
 		arduinoSerialData.write('5'.encode())
                 current_time = datetime.datetime.now().time()
                 print(current_time.isoformat())
-		print("Sound")
-		currentSongIndex+=1
 	if not musicChannel.get_busy() and lightShow == True:
 		lightShow = False
 	if not musicChannel.get_busy() and lightShow == False:
