@@ -25,7 +25,7 @@ void setup() {
     pinMode(sensor, INPUT);
     mySoftwareSerial.begin(9600);
     myDFPlayer.begin(mySoftwareSerial);
-    myDFPlayer.volume(10);
+    myDFPlayer.volume(30);
     myDFPlayer.loopFolder(2);
     ledService.Begin();
 }
@@ -33,6 +33,7 @@ void setup() {
 // the loop function runs over and over again until power down or reset
 void loop() {
     val = digitalRead(sensor);
+    //val = LOW;
     if (val == HIGH) {
         myDFPlayer.playFolder(1, 1);
         ledService.PerformLightShow();
@@ -41,4 +42,3 @@ void loop() {
         delay(coolDown * 1000);
     }
 }
-

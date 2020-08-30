@@ -14,7 +14,7 @@ class LedService
      LedService(uint8_t dataPin)
      {
          LedCount = NUM_LEDS;
-         LEDS.addLeds<WS2812, dataPin, GRB>(Leds, NUM_LEDS);
+         LEDS.addLeds<WS2812, 7, GRB>(Leds, NUM_LEDS);
          LEDS.setBrightness(84);
      };
 
@@ -86,7 +86,3 @@ class LedService
          ShowEveryOtherColor(CHSV(25, 255, 255), CHSV(200, 255, 255), 0.001);
      }
 };
-
-
-
-
