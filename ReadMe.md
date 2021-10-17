@@ -8,7 +8,7 @@ the DfPlayer module to start playing the Strang Things music while playing
 a light show synced to the tune. When not playing the light show the DfPlayer will play music
 in the folder denoted /MP3/. 
 
-#Setup
+## Setup
 Make sure to have music that will loop while the device is in a stand by in the 
 folder /MP3/ in the SD card. The device will play the song that is in the /1/ folder
 starting with 001 when motion is detected. The light show is synced with the 
