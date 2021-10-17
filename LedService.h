@@ -2,7 +2,7 @@
 
 #include <FastLED.h>
 
-#define NUM_LEDS 150
+#define NUM_LEDS 50
 
 class LedService
 {
@@ -11,10 +11,10 @@ class LedService
      int LedCount;
 
  public:
-     LedService(uint8_t dataPin)
+     LedService()
      {
          LedCount = NUM_LEDS;
-         LEDS.addLeds<WS2812, 7, GRB>(Leds, NUM_LEDS);
+         LEDS.addLeds<WS2812, 7, RGB>(Leds, NUM_LEDS);
          LEDS.setBrightness(84);
      };
 
